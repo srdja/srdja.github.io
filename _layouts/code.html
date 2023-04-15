@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+    <script src="{{ "/scripts/game-of-life.js" | prepend: site.baseurl }}"></script>
+  </head>
+  <body>
+    <script>
+       window.addEventListener('load', function() {
+           themeSet();
+           initLife('writings-canvas', themeGetColor('--theme-color2'), 0);
+       });
+    </script>
+    <canvas id="writings-canvas"></canvas>
+    <div class="page-content">
+    {{ content }}
+    </div>
+  </body>
+</html>

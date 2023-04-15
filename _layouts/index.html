@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+    <script src="{{ "/scripts/gravity.js" | prepend: site.baseurl }}"></script>
+  </head>
+  <body>
+    <script>
+      window.addEventListener('load', function() {
+          themeSet();
+          themeSetToggle();
+          themeToggle();
+          initGravity('index-canvas');
+      });
+    </script>
+    <canvas id="index-canvas"></canvas>
+    <div class="page-content">
+    {{ content }}
+    </div>
+  </body>
+</html>

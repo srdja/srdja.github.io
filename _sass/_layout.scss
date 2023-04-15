@@ -1,0 +1,139 @@
+/**
+ * Site header
+ */
+.site-header {
+    //    border-bottom: 1px solid $code-background;
+    border-bottom: 1px solid var(--theme-color-index-border);
+    margin-top: $spacing-unit;
+    max-width: 48rem;
+}
+
+
+.smallcap {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    a,
+    a:hover {
+        text-decoration: none;
+    }
+}
+/**
+ * Page content
+ */
+.page-content {
+    max-width: 42rem;
+    padding-left:  1rem;
+    padding-right: 1rem;
+    margin-left:  auto;
+    margin-right: auto;
+/*
+    position: relative;
+    padding: $spacing-unit ($spacing-unit * 0.75);
+    margin: 1rem;
+    box-sizing: border-box;*/
+}
+/**
+ * Pages
+ */
+.home {
+    section + section {
+        margin-top: $spacing-unit;
+    }
+}
+
+.post-list > li {
+    margin-bottom: $spacing-unit / 4;
+    list-style-type: none;
+    margin-left: -2rem;
+
+    a,
+    a:hover {
+        color: $link-color;
+        font-weight: regular;
+        text-decoration: underline;
+    }
+
+    time {
+        font-size: $small-font-size;
+        color: $grey-color;
+    }
+    @include media-query($on-palm) {
+        time {
+            display: block;
+            font-size: $small-font-size;
+        }
+    }
+}
+
+.tag-title {
+    color: $link-color;
+}
+/**
+ * Posts
+ */
+.post-header {
+    margin-bottom: $spacing-unit;
+    margin-top: $spacing-unit;
+}
+
+.post-title {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.post-content {
+    margin-bottom: $spacing-unit;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 2rem;
+    }
+
+    h1,
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
+    h5,
+    h6 {
+        font-size: 1rem;
+    }
+
+    font-family: $post-font-family;
+}
+
+.back {
+    display: block;
+    font-size: $small-font-size;
+    margin-bottom: 1rem;
+}
+
+::selection {
+    background: #BFBFAF; /* WebKit/Blink Browsers */
+    color: #000;
+}
+::-moz-selection {
+    background: #AFAFAF; /* Gecko Browsers */
+    color: #000;
+}
