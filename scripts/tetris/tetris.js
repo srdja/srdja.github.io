@@ -6,7 +6,7 @@ var level = 0;
 var totalLines = 0;
 var highscore = 0;
 
-var fallSpeed = 200;
+var fallSpeed = 500;
 
 var init  = false;
 
@@ -636,6 +636,17 @@ var input_move_side  = INPUT_EVENT_NONE;
 var input_drop       = INPUT_EVENT_NONE;
 var input_rotate     = INPUT_EVENT_NONE;
 
+const rotate_repeat_speed        = 0;
+const move_sideways_repeat_speed = 0;
+const move_down_repeat_speed     = 0;
+
+var fall_speed = 500;
+var fall_in    = fall_speed;
+
+var move_sideways_delay = 50;
+var move_left_delay     = 0;
+var move_right_delay    = 0;
+
 // optimization
 var fallingTetromino = drawFromBag();
 var nextTetromino    = drawFromBag();
@@ -656,22 +667,29 @@ function isGameOver(field) {
 }
 
 
-function updateGameState() {
+function updateGameState(deltaT) {
     if (gameOver) {
         drawGameOverScreen();
         return;
     }
 
+    fall_in          -= deltaT;
+    move_left_delay  -= deltaT;
+    move_right_delay -= deltaT;
+
     // Do the automatic fall
-    if (!tetMoveDown(fallingTetromino, field)) {
-        if (isGameOver(field)) {
-            gameOver = true;
-        } else {   
-            fieldAdd(field, fallingTetromino);         
-            fallingTetromino = nextTetromino;
-            nextTetromino    = drawFromBag();
-        }
-    } 
+    if (fall_in <= 0) {
+        if (!tetMoveDown(fallingTetromino, field)) {
+            if (isGameOver(field)) {
+                gameOver = true;
+            } else {   
+                fieldAdd(field, fallingTetromino);         
+                fallingTetromino = nextTetromino;
+                nextTetromino    = drawFromBag();
+            }
+        } 
+        fall_in = fall_speed;
+    }
 
     if (input_drop == INPUT_EVENT_DROP) {
         input_drop = INPUT_EVENT_NONE;
@@ -687,36 +705,45 @@ function updateGameState() {
         }
     } else {
         // if both are pressed they will cancel each other out.
-        if (input_move_right == INPUT_EVENT_MOVE_RIGHT) {
+        if (input_move_right == INPUT_EVENT_MOVE_RIGHT && 
+            move_right_delay <= 0) 
+        { 
             tetMoveRight(fallingTetromino, field);
+            move_right_delay = move_sideways_delay;
         }
-        if (input_move_left == INPUT_EVENT_MOVE_LEFT) {
+        if (input_move_left == INPUT_EVENT_MOVE_LEFT && 
+            move_left_delay <= 0) 
+        {
             tetMoveLeft(fallingTetromino, field);
+            move_left_delay = move_sideways_delay;
         }
         if (input_rotate == INPUT_EVENT_ROTATE_CCW) {
             tetRotate(fallingTetromino, field);
+            input_rotate = INPUT_EVENT_NONE;
         }
     }
     var lines = 0;
     if ((lines = clearLines(field)) > 0) {
         switch (lines) {
-        case 1: score += 40 * (level + 1); break;
-        case 2: score += 100 * (level + 1); break;
-        case 3: score += 300 * (level + 1); break;
+        case 1: score += 40   * (level + 1); break;
+        case 2: score += 100  * (level + 1); break;
+        case 3: score += 300  * (level + 1); break;
         case 4: score += 1200 * (level + 1); break;
         }
         totalLines += lines;
+
         drawScore(score);
         setBestScore(score);
         drawHighScore(0);
         drawLines(totalLines);
+
         var newLevel = (totalLines - (totalLines % 10)) / 10;
         if (newLevel > 20) {
             newLevel = 20;
         }
         if (newLevel > level) {
             level = newLevel;
-            fallSpeed = fallSpeed * 0.80;
+            fall_speed = fall_speed * 0.80;
         }
         drawLevel(level);
     }
@@ -748,9 +775,11 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keyup', function(event) {
     if(event.keyCode == 37) {
+        move_left_delay = 0;
         input_move_left = INPUT_EVENT_NONE;
     }
     else if(event.keyCode == 39) {
+        move_right_delay = 0;
         input_move_right = INPUT_EVENT_NONE;
     }
     else if (event.keyCode == 32) {
@@ -802,8 +831,8 @@ var   startT   = Date.now();
 var   deltaT   = startT;
 var   nowT     = startT;
 var   fps      = 0;
-const FPS      = 5;
-const FRAME_MS = 1000 / FPS;
+const FPS_CAP  = 30;
+const FRAME_MS = 1000 / FPS_CAP;
 
 
 async function gameLoop() {
@@ -812,7 +841,8 @@ async function gameLoop() {
         return;
     }
     eraseField();
-    updateGameState();
+    updateGameState(deltaT);
+    drawFPS(fps);
 
     deltaT = Date.now() - startT;
 
@@ -821,7 +851,7 @@ async function gameLoop() {
     }
 
     deltaT = Date.now() - startT;
-   // drawFPS(Math.round(1000 / deltaT));
+    fps    = Math.round(1000 / deltaT);
     startT = Date.now();
 
     window.requestAnimationFrame(gameLoop);
