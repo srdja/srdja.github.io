@@ -58,10 +58,10 @@ var asteroidRadius      = 1;
 var impactColor         = "#ffffff";
 
 
-asteroidColor       = '#e8618c';
-planetBody          = "#e8618c";
-planetRing          = "#ffe584";
-planetBodyHighlight = "#f0b0bc";
+asteroidColor       = '#ffffff';
+planetBody          = "#3ff9ff";
+planetRing          = "#fca9b8";
+planetBodyHighlight = "#fff9ff";
 planetRingHighlight = "#ffe584";
 impactColor         = "#ffffff";
 asteroidRadius      = 1;
