@@ -58,28 +58,13 @@ var asteroidRadius      = 1;
 var impactColor         = "#ffffff";
 
 
-function themeChanged() {
-    if (themeName() === "theme-dark") {
-        asteroidColor       = '#e8618c';
-        planetBody          = "#e8618c";
-        planetRing          = "#ffe584";
-        planetBodyHighlight = "#f0b0bc";
-        planetRingHighlight = "#ffe584";
-        impactColor         = "#ffffff";
-        asteroidRadius      = 1;
-    } else {
-        asteroidColor       = '#444444';
-        planetBody          = "#fdb876";
-        planetRing          = "#e8618c";
-        planetBodyHighlight = "#ffe584";
-        planetRingHighlight = "#f0b0bc";
-        impactColor         = "#8b0000";
-        asteroidRadius      = 2;
-    }
-}
-
-themeChanged();
-onThemeChange(themeChanged);
+asteroidColor       = '#e8618c';
+planetBody          = "#e8618c";
+planetRing          = "#ffe584";
+planetBodyHighlight = "#f0b0bc";
+planetRingHighlight = "#ffe584";
+impactColor         = "#ffffff";
+asteroidRadius      = 1;
 
 
 // --------------------------------------------------

@@ -6,7 +6,7 @@
 // Our variables
 $base-font-family: monospace;
 $post-font-family: sans-serif;
-$code-font-family: Inconsolata, Monaco, Consolas, monospace;
+$code-font-family: monospace, Inconsolata, Monaco, Consolas;
 $base-font-size:   14px;
 $base-font-weight: 400;
 $small-font-size:  0.875rem;
@@ -14,76 +14,14 @@ $base-line-height: 1.5;
 
 $spacing-unit:     2rem;
 
-
-// Just for reference. Emacs shows the colors.
-$theme1-c1: #fe3218;
-$theme1-c2: #ff911a;
-$theme1-c3: #e100f5;
-$theme1-c4: #450eff;
-$theme1-c5: #21006f;
-
-$theme2-c1: #711c91;
-$theme2-c2: #ea00d9;
-$theme2-c3: #0abdc6;
-$theme2-c4: #133e7c;
-$theme2-c5: #091833;
-
-$theme3-c1: #f48ba9;
-$theme3-c2: #f0b0bc;
-$theme3-c3: #fadade;
-$theme3-c4: #86cbed;
-$theme3-c5: #a0deee;
-$theme3-C6: #936ed4;
-
-$theme4-c0: #f0b0bc;
-$theme4-c1: #e8618c;
-$theme4-c2: #fdb876;
-$theme4-c3: #ffe584;
-$theme4-c4: #7cd1a9;
-$theme4-c5: #5881bd;
-$theme4-c6: #F2eee5;
-
-.theme-light {
-    --theme-color1: #fe3218;
-    --theme-color2: #ff911a;
-    --theme-color3: #e100f5;
-    --theme-color4: #450eff;
-    --theme-color5: #21006f;
-
-    //    --theme-color-background: #f2eee5;
-    --theme-color-background: #f0f0f0;
-    --theme-color-text: #000000;
-    --theme-color-link: #e8618c;
-    --theme-color-link-hover: #f0b0bc;
-
-    // canvas animations/games
-    --theme-color-canvas-animation: var(--theme-color1);
-    --theme-color-index-border: #aaa;
-    // inline code
-    --theme-color-code: var(--theme-color2);
-    --theme-color-code-background: #1a1a1b;
-
-}
-
-.theme-dark {
-    --theme-color-background: #000000;
-    --theme-color-text: #FFFFFF;
-    --theme-color-link: #e8618c;
-    --theme-color-link-hover: #f0b0bc;
-    --theme-color-index-border: #1a1a1a;
-
-    --theme-color-canvas-animation: #21006f;
-}
-
-
-$text-color:       var(--theme-color-text);
-$background-color: var(--theme-color-background);
-$link-color:       var(--theme-color-link);
-$code-color:       var(--theme-color-code);
-$code-background:  var(--theme-color-code-background);
+$text-color:       #FFFFFF;
+$background-color: #1b1b1b;
+$link-color:       #fa3eb2;
+$code-color:       #ffffff;
+$code-background:  #d1d1d1;
 $code-foreground:  #000;
 $pre-background:   #d1d1d1;
-$hover-color:      var(--theme-color-link-hover);
+$hover-color:      #f0b0bc;
 
 $grey-color:       #aaa;
 $grey-color-light: lighten($grey-color, 25%);

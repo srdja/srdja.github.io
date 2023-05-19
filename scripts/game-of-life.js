@@ -159,7 +159,7 @@ function startLife() {
 }
 
 // include abs position, pattern, and color
-function initLife(canvasName, animColor, pattern) {
+function initLife(canvasName, pattern) {
     canvas        = document.getElementById(canvasName);
     context       = canvas.getContext('2d');
     canvas.width  = window.innerWidth;
@@ -167,7 +167,7 @@ function initLife(canvasName, animColor, pattern) {
     init          = true;
     grid          = newGrid(GRID_WIDTH, GRID_HEIGHT);
     cellSize      = getCellSize(canvas.width, canvas.height);
-    color         = animColor;
+    color         = "#ffffff";
 
     context.translate(0.5, 0.5); // defuzz
 

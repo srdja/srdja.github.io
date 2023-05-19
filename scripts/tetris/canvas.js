@@ -1,9 +1,5 @@
 var gui_color = "#FFFFFF";
 
-if (themeName() === "theme-light") {
-    gui_color = "#000000";
-}
-
 var canvas;
 var context;
 
